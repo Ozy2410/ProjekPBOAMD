@@ -48,10 +48,10 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel5" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jLabel1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="jPasswordField1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jButton1" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
                   </Group>
