@@ -32,8 +32,10 @@ public class MainFrame extends javax.swing.JFrame {
         membershipButton = new javax.swing.JButton();
         membershipIcon = new javax.swing.JLabel();
         profileIcon = new javax.swing.JLabel();
+        membershipButton1 = new javax.swing.JButton();
+        profileIcon1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         profileButton.setText("Profile");
         profileButton.addActionListener(new java.awt.event.ActionListener() {
@@ -42,11 +44,21 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        membershipButton.setText("Membership");
+        membershipButton.setText("SETTINGS");
+        membershipButton.setToolTipText("");
+        membershipButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                membershipButtonActionPerformed(evt);
+            }
+        });
 
         membershipIcon.setText("jLabel1");
 
         profileIcon.setText("jLabel1");
+
+        membershipButton1.setText("Membership");
+
+        profileIcon1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -60,8 +72,12 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(membershipIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(membershipButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                .addComponent(profileIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(membershipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 426, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,7 +86,9 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(membershipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(membershipIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(profileIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(profileIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(membershipButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profileIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 373, Short.MAX_VALUE))
         );
 
@@ -85,12 +103,17 @@ public class MainFrame extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(812, 432));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_profileButtonActionPerformed
+
+    private void membershipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membershipButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_membershipButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,8 +153,10 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton membershipButton;
+    private javax.swing.JButton membershipButton1;
     private javax.swing.JLabel membershipIcon;
     private javax.swing.JButton profileButton;
     private javax.swing.JLabel profileIcon;
+    private javax.swing.JLabel profileIcon1;
     // End of variables declaration//GEN-END:variables
 }
