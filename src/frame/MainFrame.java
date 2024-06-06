@@ -28,37 +28,49 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        profileButton = new javax.swing.JButton();
-        membershipButton = new javax.swing.JButton();
-        membershipIcon = new javax.swing.JLabel();
-        profileIcon = new javax.swing.JLabel();
-        membershipButton1 = new javax.swing.JButton();
-        profileIcon1 = new javax.swing.JLabel();
+        Update_Delete_Member = new javax.swing.JButton();
+        Payment = new javax.swing.JLabel();
+        NewMember = new javax.swing.JLabel();
+        jLabelWellcome = new javax.swing.JLabel();
+        ListOfMember = new javax.swing.JLabel();
+        Logout = new javax.swing.JLabel();
+        Exit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        profileButton.setText("Profile");
-        profileButton.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(new java.awt.Color(0, 118, 221));
+
+        Update_Delete_Member.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Update_Delete_Member.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/update & delete member.png"))); // NOI18N
+        Update_Delete_Member.setText("Update&Delete Member");
+        Update_Delete_Member.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                profileButtonActionPerformed(evt);
+                Update_Delete_MemberActionPerformed(evt);
             }
         });
 
-        membershipButton.setText("SETTINGS");
-        membershipButton.setToolTipText("");
-        membershipButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                membershipButtonActionPerformed(evt);
-            }
-        });
+        Payment.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Payment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/payment.png"))); // NOI18N
+        Payment.setText("Payment");
 
-        membershipIcon.setText("jLabel1");
+        NewMember.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        NewMember.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/new member.png"))); // NOI18N
+        NewMember.setText("New Member");
 
-        profileIcon.setText("jLabel1");
+        jLabelWellcome.setFont(new java.awt.Font("Bahnschrift", 1, 90)); // NOI18N
+        jLabelWellcome.setText("WELCOME");
 
-        membershipButton1.setText("Membership");
+        ListOfMember.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ListOfMember.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/list of members.png"))); // NOI18N
+        ListOfMember.setText("List Of Member");
 
-        profileIcon1.setText("jLabel1");
+        Logout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logout.png"))); // NOI18N
+        Logout.setText("Logout");
+
+        Exit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/exit.png"))); // NOI18N
+        Exit.setText("Exit");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -66,30 +78,40 @@ public class MainFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(profileIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NewMember)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Update_Delete_Member)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(membershipIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ListOfMember)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(membershipButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
-                .addComponent(profileIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Payment)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
+                .addComponent(Logout)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(membershipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(Exit)
+                .addGap(13, 13, 13))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelWellcome)
+                .addGap(452, 452, 452))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(membershipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(membershipIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(profileIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(membershipButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(profileIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 373, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Update_Delete_Member, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NewMember, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ListOfMember, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Payment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Logout, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(273, 273, 273)
+                .addComponent(jLabelWellcome)
+                .addGap(0, 330, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -103,17 +125,17 @@ public class MainFrame extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(812, 432));
+        setSize(new java.awt.Dimension(1382, 776));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
+    private void Update_Delete_MemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update_Delete_MemberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_profileButtonActionPerformed
+    }//GEN-LAST:event_Update_Delete_MemberActionPerformed
 
-    private void membershipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membershipButtonActionPerformed
+    private void membershipButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         // TODO add your handling code here:
-    }//GEN-LAST:event_membershipButtonActionPerformed
+    }                                                
 
     /**
      * @param args the command line arguments
@@ -151,12 +173,13 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Exit;
+    private javax.swing.JLabel ListOfMember;
+    private javax.swing.JLabel Logout;
+    private javax.swing.JLabel NewMember;
+    private javax.swing.JLabel Payment;
+    private javax.swing.JButton Update_Delete_Member;
+    private javax.swing.JLabel jLabelWellcome;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton membershipButton;
-    private javax.swing.JButton membershipButton1;
-    private javax.swing.JLabel membershipIcon;
-    private javax.swing.JButton profileButton;
-    private javax.swing.JLabel profileIcon;
-    private javax.swing.JLabel profileIcon1;
     // End of variables declaration//GEN-END:variables
 }
