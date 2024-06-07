@@ -56,6 +56,11 @@ public class MainFrame extends javax.swing.JFrame {
         NewMember.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         NewMember.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/new member.png"))); // NOI18N
         NewMember.setText("New Member");
+        NewMember.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                NewMemberMousePressed(evt);
+            }
+        });
 
         jLabelWellcome.setFont(new java.awt.Font("Bahnschrift", 1, 90)); // NOI18N
         jLabelWellcome.setText("WELCOME");
@@ -132,6 +137,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void Update_Delete_MemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update_Delete_MemberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Update_Delete_MemberActionPerformed
+
+    private void NewMemberMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewMemberMousePressed
+        // TODO add your handling code here:
+        new NewMember().setVisible(true);
+    }//GEN-LAST:event_NewMemberMousePressed
 
     private void membershipButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         // TODO add your handling code here:

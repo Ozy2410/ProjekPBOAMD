@@ -4,6 +4,9 @@
  */
 package frame;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author rifar
@@ -26,6 +29,7 @@ public class Register2Frame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -39,7 +43,7 @@ public class Register2Frame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButtonFinish = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 118, 211));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 400));
@@ -56,6 +60,7 @@ public class Register2Frame extends javax.swing.JFrame {
         jLabel3.setText("Full Name:");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        buttonGroup1.add(jButtonFemale);
         jButtonFemale.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonFemale.setText("Female");
         jButtonFemale.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +69,7 @@ public class Register2Frame extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jButtonMale);
         jButtonMale.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonMale.setText("Male");
         jButtonMale.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +86,7 @@ public class Register2Frame extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("DD/MM/YYYY");
+        jLabel4.setText("Tanggal Lahir");
 
         jTextFieldFullName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +94,7 @@ public class Register2Frame extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxBundling.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jenis-Jenis Paket:", "Monthly ", "Quarterly ", "Yearly" }));
+        jComboBoxBundling.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jenis-Jenis Paket:", "Monthly", "Quarterly", "Yearly" }));
         jComboBoxBundling.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxBundlingActionPerformed(evt);
@@ -123,20 +129,16 @@ public class Register2Frame extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(598, 598, 598)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(598, 598, 598)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxBundling, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButtonMale)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButtonFemale))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(598, 598, 598)
-                                .addComponent(jTextFieldAge, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonMale)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonFemale))
+                            .addComponent(jComboBoxBundling, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldAge, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 564, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -175,7 +177,7 @@ public class Register2Frame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1366, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1366, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,6 +205,19 @@ public class Register2Frame extends javax.swing.JFrame {
 
     private void jButtonFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinishActionPerformed
         // TODO add your handling code here:
+        String bundle = jComboBoxBundling.getSelectedItem().toString();
+        if(jTextFieldFullName.getText().length() <= 0){
+            JOptionPane.showMessageDialog(new JFrame(), "Tolong Masukan Nama Panjang Anda", "Invalid Name", JOptionPane.ERROR_MESSAGE);
+        }else if(jTextFieldAge.getText().length() <= 0){
+            JOptionPane.showMessageDialog(new JFrame(), "Tolong Masukan Tanggal Lahir Anda", "Invalid Age", JOptionPane.ERROR_MESSAGE);
+        }else if(buttonGroup1.getSelection()==null){
+            JOptionPane.showMessageDialog(new JFrame(), "Tolong Pilih Kelamin Anda", "Invalid Gender", JOptionPane.ERROR_MESSAGE);
+        }else if(bundle.equalsIgnoreCase("Jenis-Jenis Paket:")){
+            JOptionPane.showMessageDialog(new JFrame(), "Tolong Pilih Subcription Anda", "Invalid Subscription", JOptionPane.ERROR_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(new JFrame(), ("Salam Kenal " + jTextFieldFullName.getText()), "Salam Kenal!", JOptionPane.ERROR_MESSAGE);
+            dispose();
+        }
     }//GEN-LAST:event_jButtonFinishActionPerformed
 
     private void jComboBoxBundlingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxBundlingActionPerformed
@@ -245,6 +260,7 @@ public class Register2Frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton jButtonFemale;
     private javax.swing.JButton jButtonFinish;
     private javax.swing.JRadioButton jButtonMale;

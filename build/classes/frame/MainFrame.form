@@ -128,6 +128,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="New Member"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NewMemberMousePressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelWellcome">
           <Properties>

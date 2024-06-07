@@ -45,17 +45,37 @@ public class TampilanAwal extends javax.swing.JFrame {
         jButtonRegisterAwal.setBackground(new java.awt.Color(253, 126, 0));
         jButtonRegisterAwal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButtonRegisterAwal.setText("Register");
+        jButtonRegisterAwal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegisterAwalActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButtonRegisterAwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 460, 190, -1));
 
         jButtonLoginAwal.setBackground(new java.awt.Color(242, 242, 242));
         jButtonLoginAwal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButtonLoginAwal.setText("Login");
+        jButtonLoginAwal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLoginAwalActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButtonLoginAwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, 190, 20));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegisterAwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterAwalActionPerformed
+        // TODO add your handling code here:
+        new RegisterFrame().setVisible(true);
+    }//GEN-LAST:event_jButtonRegisterAwalActionPerformed
+
+    private void jButtonLoginAwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginAwalActionPerformed
+        // TODO add your handling code here:
+        new LoginFrame().setVisible(true);
+    }//GEN-LAST:event_jButtonLoginAwalActionPerformed
 
     /**
      * @param args the command line arguments

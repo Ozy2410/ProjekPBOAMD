@@ -52,7 +52,6 @@ public class NewMember extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(175, 100));
-        setUndecorated(true);
 
         jPanel1.setForeground(new java.awt.Color(0, 118, 221));
 
