@@ -1,5 +1,17 @@
 package frame;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -36,7 +48,8 @@ public class MainFrame extends javax.swing.JFrame {
         Logout = new javax.swing.JLabel();
         Exit = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 118, 221));
 
@@ -52,6 +65,11 @@ public class MainFrame extends javax.swing.JFrame {
         Payment.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Payment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/payment.png"))); // NOI18N
         Payment.setText("Payment");
+        Payment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                PaymentMousePressed(evt);
+            }
+        });
 
         NewMember.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         NewMember.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/new member.png"))); // NOI18N
@@ -68,6 +86,11 @@ public class MainFrame extends javax.swing.JFrame {
         ListOfMember.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ListOfMember.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/list of members.png"))); // NOI18N
         ListOfMember.setText("List Of Member");
+        ListOfMember.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ListOfMemberMousePressed(evt);
+            }
+        });
 
         Logout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logout.png"))); // NOI18N
@@ -90,13 +113,13 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(ListOfMember)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Payment)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Logout)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Exit)
                 .addGap(13, 13, 13))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(477, Short.MAX_VALUE)
                 .addComponent(jLabelWellcome)
                 .addGap(452, 452, 452))
         );
@@ -116,7 +139,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(273, 273, 273)
                 .addComponent(jLabelWellcome)
-                .addGap(0, 330, Short.MAX_VALUE))
+                .addGap(0, 331, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -133,15 +156,77 @@ public class MainFrame extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1382, 776));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    private Connection connect = null;
+    private JDialog jDialog = new JDialog();
+    
+    public void setCon(Connection connect){
+        this.connect = connect;
+    }
+    
+    public void setDialog(JDialog jDialog){
+        this.jDialog = jDialog;
+    }
+    
+    public Connection getCon(){
+        return connect;
+    }
+    
+    public JDialog getjDialog(){
+        return jDialog;
+    }
+    
     private void Update_Delete_MemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update_Delete_MemberActionPerformed
         // TODO add your handling code here:
+        new UpdateDeleteMember().setVisible(true);
     }//GEN-LAST:event_Update_Delete_MemberActionPerformed
 
     private void NewMemberMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewMemberMousePressed
         // TODO add your handling code here:
         new NewMember().setVisible(true);
     }//GEN-LAST:event_NewMemberMousePressed
+
+    private void ListOfMemberMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListOfMemberMousePressed
+        // TODO add your handling code here:
+        DefaultTableModel model = new DefaultTableModel(new String[]{"No", "Nama", "Nomor Handphone", "Email", "Gender", "GYM Time", "ID Member", "Umur", "Bayaran"}, 0);
+        JTable table = new JTable(model);
+        
+        JPanel panel = new JPanel();
+        JScrollPane sp = new JScrollPane(table);
+        
+        panel.add(sp);
+        jDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        jDialog.setContentPane(panel);
+        jDialog.pack();
+        jDialog.setVisible(true);
+        
+        try{
+            if(connect == null || connect.isClosed()) {
+                connect = Koneksi.getConnection();
+            }
+            Statement stm = connect.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM tb_member");
+            
+            while (rs.next()) {
+                int no = rs.getInt("id");
+                String nama = rs.getString("nama");
+                String noHP = rs.getString("no_hp");
+                String email = rs.getString("email");
+                String gender = rs.getString("gender");
+                String gymTime = rs.getString("gym_time");
+                String member_id = rs.getString("id_member");
+                String age = rs.getString("age");
+                String bayar = rs.getString("bayaran");
+                model.addRow(new Object[]{no, nama, noHP, email, gender, gymTime, member_id, age, bayar});
+            }
+        } catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_ListOfMemberMousePressed
+
+    private void PaymentMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PaymentMousePressed
+        // TODO add your handling code here:
+        new Payment().setVisible(true);
+    }//GEN-LAST:event_PaymentMousePressed
 
     private void membershipButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         // TODO add your handling code here:
@@ -177,7 +262,7 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(false);
+                new MainFrame().setVisible(true);
             }
         });
     }

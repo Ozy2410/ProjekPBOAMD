@@ -4,8 +4,10 @@ import java.util.Properties;
 import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -13,10 +15,24 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author depou
+ * @author Fauzi
  */
-public class RegisterFrame extends javax.swing.JFrame {
-private String otp;
+
+interface Reseta{
+    void resetForm();
+}
+
+public class RegisterFrame extends javax.swing.JFrame implements Reset{
+    private String otp;
+    
+    public void setOtp(String otp){
+        this.otp = otp;
+    }
+    
+    public String getOtp(){
+        return otp;
+    }
+
     /**
      * Creates new form RegisterFrame
      */
@@ -169,7 +185,18 @@ private String otp;
         setSize(new java.awt.Dimension(1382, 776));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    @Override
+    public void resetForm(){
+        jTextFieldUsername.setText("");
+        jTextFieldEmail.setText("");
+        jPasswordField1.setText("");
+        jPasswordField2.setText("");
+    }
+    
+    
+    private Connection connect = null;
+    
     private void jTextFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldUsernameActionPerformed
@@ -180,16 +207,43 @@ private String otp;
         String username = jTextFieldUsername.getText();
         String pass1 = jPasswordField1.getText();
         String pass2 = jPasswordField2.getText();
-        if(username.length() <= 3){
+        
+        if(username.length() >= 3){
+            if(email.contains("@")){
+                if(pass1.equals(pass2)){
+                    try{
+                        if (connect == null || connect.isClosed()) {
+                            connect = Koneksi.getConnection();
+                        }
+                        String register = "INSERT INTO tb_login (username, email, pass, conf_pass) VALUES (?, ?, ?, ?)";
+                        try(PreparedStatement p = connect.prepareStatement(register)){
+                            p.setString(1, username);
+                            p.setString(2, email);
+                            p.setString(3, pass1);
+                            p.setString(4, pass2);
+                            p.executeUpdate();  
+                        }
+                        setVisible(false);
+                        new Register2Frame().setVisible(true);
+                        resetForm();
+                    } catch(SQLException e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(new JFrame(), "Password Tidak Sama", "Invalid Password", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(new JFrame(), "Mohon Masukan Input Yang Benar", "Invalid Email", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
             JOptionPane.showMessageDialog(new JFrame(), "Mohon Masukan Input Yang Benar", "Invalid Username", JOptionPane.ERROR_MESSAGE);
-        }else if (!email.contains("@")) {
-            JOptionPane.showMessageDialog(new JFrame(), "Mohon Masukan Input Yang Benar", "Invalid Email", JOptionPane.ERROR_MESSAGE);
-        }else if (!pass1.equals(pass2)){
-            JOptionPane.showMessageDialog(new JFrame(), "Password Tidak Sama", "Invalid Password", JOptionPane.ERROR_MESSAGE);
-        }else{
-            new Register2Frame().setVisible(true);
-            dispose();
         }
+        
+        
+//        else{
+//            new Register2Frame().setVisible(true);
+//            dispose();
+//        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

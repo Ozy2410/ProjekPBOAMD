@@ -2,6 +2,10 @@ package frame;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,6 +19,14 @@ import javax.swing.JOptionPane;
 
 public class LoginFrame extends javax.swing.JFrame {
     private boolean valid = true;
+   
+    public void setValid(boolean valid){
+        this.valid = valid;
+    }
+    
+    public boolean getValid(){
+        return valid;
+    }
 
     /**
      * Creates new form LoginFrame
@@ -35,12 +47,13 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextUsername = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
+        labelUsername = new javax.swing.JLabel();
+        labelPass = new javax.swing.JLabel();
+        Panel = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -61,29 +74,22 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 118, 221));
         jLabel2.setText("LOGIN");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(790, 220, 145, 59);
+        jLabel2.setBounds(790, 220, 144, 59);
 
-        jLabel3.setForeground(new java.awt.Color(0, 118, 221));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/close.png"))); // NOI18N
-        jLabel3.setText("Incorrect Username Or Pasword");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(760, 290, 270, 30);
-
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 118, 221));
-        jTextField1.setText("Enter Username");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextUsername.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextUsername.setForeground(new java.awt.Color(0, 118, 221));
+        jTextUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextUsernameActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(760, 330, 244, 30);
+        getContentPane().add(jTextUsername);
+        jTextUsername.setBounds(760, 340, 244, 30);
 
+        jPasswordField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPasswordField1.setForeground(new java.awt.Color(0, 118, 221));
-        jPasswordField1.setText("jPasswordField1");
         getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(760, 370, 244, 30);
+        jPasswordField1.setBounds(760, 400, 244, 30);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 118, 221));
@@ -95,7 +101,7 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(760, 420, 92, 27);
+        jButton2.setBounds(760, 440, 100, 27);
 
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(0, 118, 221));
@@ -106,24 +112,38 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jCheckBox1);
-        jCheckBox1.setBounds(870, 421, 133, 30);
+        jCheckBox1.setBounds(870, 440, 140, 30);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/login background.PNG"))); // NOI18N
-        jLabel5.setText("jLabel5");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 0, 1390, 760);
+        labelUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelUsername.setForeground(new java.awt.Color(0, 118, 221));
+        labelUsername.setText("USERNAME");
+        getContentPane().add(labelUsername);
+        labelUsername.setBounds(760, 320, 240, 20);
+
+        labelPass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelPass.setForeground(new java.awt.Color(0, 118, 221));
+        labelPass.setText("PASSWORD");
+        getContentPane().add(labelPass);
+        labelPass.setBounds(760, 380, 240, 20);
+
+        Panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/login background.PNG"))); // NOI18N
+        Panel.setText("jLabel5");
+        getContentPane().add(Panel);
+        Panel.setBounds(0, 0, 1390, 760);
 
         setSize(new java.awt.Dimension(1366, 768));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private Connection connect = null;
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextUsernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextUsernameActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
@@ -136,13 +156,40 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (valid){
-            new NewMember().setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(new JFrame(), "KONTOL", "Yang Bener Kontol", JOptionPane.ERROR_MESSAGE);
-        }
+        String username = jTextUsername.getText();
+        String password = jPasswordField1.getText();
+        
+        if(!username.isEmpty() && !password.isEmpty()) {
+            if(!username.isEmpty()){
+                if(!password.isEmpty()){
+                    try{
+                        if (connect == null || connect.isClosed()) {
+                            connect = Koneksi.getConnection();
+                        }
+                        Statement stm = connect.createStatement();
+                        String sql = "SELECT * FROM tb_login WHERE username = '" + username + "' AND pass = '" + password + "'";
+                        ResultSet r = stm.executeQuery(sql);
+                        
+                        if(r.next()) {
+                            new MainFrame().setVisible(true);
+                            dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(new JFrame(), "Username atau Password salah", null, JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch(SQLException e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(new JFrame(), "Tolong Masukan Password Anda", null, JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(new JFrame(), "Tolong Masukan Username Anda", null, JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "Tolong Masukan Username & Password Anda", null, JOptionPane.ERROR_MESSAGE);
+        }      
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -179,14 +226,15 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Panel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextUsername;
+    private javax.swing.JLabel labelPass;
+    private javax.swing.JLabel labelUsername;
     // End of variables declaration//GEN-END:variables
 }

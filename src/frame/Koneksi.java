@@ -16,15 +16,16 @@ public class Koneksi {
     private static java.sql.Connection connection;
     public static java.sql.Connection getConnection(){
         if (connection == null){
-             try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String unicode="useSSL=false&autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8";
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/data_ojol_yarsi?"+unicode, "root", "");
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
-            System.out.println("couldn't connect!");
-            throw new RuntimeException(ex);
-    }
+            try{
+                String url = "jdbc:mysql://localhost:3306/db_user_gym";
+                String user = "root";
+                String pass = "";
+                connection = DriverManager.getConnection(url, user, pass);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+                System.out.println("couldn't connect!");
+                throw new RuntimeException(ex);
+            }
         }
         return connection;
     }

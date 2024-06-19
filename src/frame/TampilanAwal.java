@@ -69,11 +69,13 @@ public class TampilanAwal extends javax.swing.JFrame {
 
     private void jButtonRegisterAwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterAwalActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         new RegisterFrame().setVisible(true);
     }//GEN-LAST:event_jButtonRegisterAwalActionPerformed
 
     private void jButtonLoginAwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginAwalActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         new LoginFrame().setVisible(true);
     }//GEN-LAST:event_jButtonLoginAwalActionPerformed
 
