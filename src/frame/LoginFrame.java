@@ -58,6 +58,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jButton1.setForeground(new java.awt.Color(0, 118, 221));
@@ -74,7 +75,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 118, 221));
         jLabel2.setText("LOGIN");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(790, 220, 144, 59);
+        jLabel2.setBounds(790, 220, 145, 59);
 
         jTextUsername.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextUsername.setForeground(new java.awt.Color(0, 118, 221));
@@ -168,10 +169,15 @@ public class LoginFrame extends javax.swing.JFrame {
                         }
                         Statement stm = connect.createStatement();
                         String sql = "SELECT * FROM tb_login WHERE username = '" + username + "' AND pass = '" + password + "'";
+                        String sqlAdmin = "SELECT * FROM tb_login WHERE username = 'admin' AND pass = 'admin'";
                         ResultSet r = stm.executeQuery(sql);
+                        ResultSet pawangUlar = stm.executeQuery(sqlAdmin);
                         
                         if(r.next()) {
-                            new MainFrame().setVisible(true);
+                            new MemberFrame().setVisible(true);
+                            dispose();
+                        } else if (pawangUlar.next()){
+                            new AdminFrame().setVisible(true);
                             dispose();
                         } else {
                             JOptionPane.showMessageDialog(new JFrame(), "Username atau Password salah", null, JOptionPane.ERROR_MESSAGE);
