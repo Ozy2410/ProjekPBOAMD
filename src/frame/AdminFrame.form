@@ -48,12 +48,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="NewMember" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="Update_Delete_Member" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="ListOfMember" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Payment" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="Logout" min="-2" max="-2" attributes="0"/>
@@ -62,7 +60,7 @@
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="477" max="32767" attributes="0"/>
+                  <EmptySpace pref="474" max="32767" attributes="0"/>
                   <Component id="jLabelWellcome" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="452" max="-2" attributes="0"/>
               </Group>
@@ -72,23 +70,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Update_Delete_Member" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="NewMember" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="Update_Delete_Member" min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="ListOfMember" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="Payment" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="ListOfMember" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="Logout" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="Exit" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="Payment" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="273" max="-2" attributes="0"/>
                   <Component id="jLabelWellcome" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="331" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="330" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -123,20 +118,6 @@
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PaymentMousePressed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="NewMember">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="1"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/image/new member.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="New Member"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NewMemberMousePressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelWellcome">

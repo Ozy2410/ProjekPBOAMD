@@ -162,7 +162,6 @@ public class UpdateDeleteMember extends javax.swing.JFrame implements Reset {
 
         fieldBayaran.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fieldBayaran.setForeground(new java.awt.Color(0, 118, 221));
-        fieldBayaran.setText("jTextField9");
 
         fieldGender.setBackground(new java.awt.Color(204, 204, 204));
         fieldGender.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -172,7 +171,7 @@ public class UpdateDeleteMember extends javax.swing.JFrame implements Reset {
         fieldGymTime.setBackground(new java.awt.Color(204, 204, 204));
         fieldGymTime.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fieldGymTime.setForeground(new java.awt.Color(0, 118, 221));
-        fieldGymTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Package:", "1 Month", "3 Month", "6 Month", "12 Month" }));
+        fieldGymTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Package:", "1 Month", "3 Month", "12 Month" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

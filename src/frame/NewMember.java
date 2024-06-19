@@ -37,10 +37,7 @@ public class NewMember extends javax.swing.JFrame implements Reset{
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         fieldName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -65,20 +62,10 @@ public class NewMember extends javax.swing.JFrame implements Reset{
 
         jPanel1.setForeground(new java.awt.Color(0, 118, 221));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/close.png"))); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Bahnschrift", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 118, 221));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/new member.png"))); // NOI18N
         jLabel2.setText("New Member");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 118, 221));
-        jLabel3.setText("Member ID: ");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setText("00");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 118, 221));
@@ -156,7 +143,7 @@ public class NewMember extends javax.swing.JFrame implements Reset{
         gymTime.setBackground(new java.awt.Color(204, 204, 204));
         gymTime.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         gymTime.setForeground(new java.awt.Color(0, 118, 221));
-        gymTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Package:", "1 Month", "3 Month", "6 Month", "12 Month" }));
+        gymTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Package:", "1 Month", "3 Month", "12 Month" }));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 118, 221));
@@ -180,8 +167,7 @@ public class NewMember extends javax.swing.JFrame implements Reset{
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 604, Short.MAX_VALUE)
+                        .addGap(0, 630, Short.MAX_VALUE)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
@@ -194,10 +180,6 @@ public class NewMember extends javax.swing.JFrame implements Reset{
                                     .addComponent(fieldName)
                                     .addComponent(jLabel6)
                                     .addComponent(fieldNo_hp)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel4))
                                     .addComponent(fieldEmail)
                                     .addComponent(fieldGender, 0, 365, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -223,13 +205,7 @@ public class NewMember extends javax.swing.JFrame implements Reset{
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(78, 78, 78)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(133, 133, 133)
                         .addComponent(jLabel5))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -442,13 +418,10 @@ public class NewMember extends javax.swing.JFrame implements Reset{
     private javax.swing.JTextField fieldName;
     private javax.swing.JTextField fieldNo_hp;
     private javax.swing.JComboBox<String> gymTime;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

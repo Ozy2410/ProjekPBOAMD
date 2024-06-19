@@ -42,7 +42,6 @@ public class AdminFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Update_Delete_Member = new javax.swing.JButton();
         Payment = new javax.swing.JLabel();
-        NewMember = new javax.swing.JLabel();
         jLabelWellcome = new javax.swing.JLabel();
         ListOfMember = new javax.swing.JLabel();
         Logout = new javax.swing.JLabel();
@@ -69,15 +68,6 @@ public class AdminFrame extends javax.swing.JFrame {
         Payment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 PaymentMousePressed(evt);
-            }
-        });
-
-        NewMember.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        NewMember.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/new member.png"))); // NOI18N
-        NewMember.setText("New Member");
-        NewMember.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                NewMemberMousePressed(evt);
             }
         });
 
@@ -117,12 +107,10 @@ public class AdminFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(NewMember)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Update_Delete_Member)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ListOfMember)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(Payment)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Logout)
@@ -130,7 +118,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addComponent(Exit)
                 .addGap(13, 13, 13))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(477, Short.MAX_VALUE)
+                .addContainerGap(474, Short.MAX_VALUE)
                 .addComponent(jLabelWellcome)
                 .addGap(452, 452, 452))
         );
@@ -138,19 +126,17 @@ public class AdminFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Update_Delete_Member, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(NewMember, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Update_Delete_Member, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ListOfMember, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Payment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Logout, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Payment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(273, 273, 273)
                 .addComponent(jLabelWellcome)
-                .addGap(0, 331, Short.MAX_VALUE))
+                .addGap(0, 330, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -190,11 +176,6 @@ public class AdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         new UpdateDeleteMember().setVisible(true);
     }//GEN-LAST:event_Update_Delete_MemberActionPerformed
-
-    private void NewMemberMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewMemberMousePressed
-        // TODO add your handling code here:
-        new NewMember().setVisible(true);
-    }//GEN-LAST:event_NewMemberMousePressed
 
     private void ListOfMemberMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListOfMemberMousePressed
         // TODO add your handling code here:
@@ -294,7 +275,6 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JLabel Exit;
     private javax.swing.JLabel ListOfMember;
     private javax.swing.JLabel Logout;
-    private javax.swing.JLabel NewMember;
     private javax.swing.JLabel Payment;
     private javax.swing.JButton Update_Delete_Member;
     private javax.swing.JLabel jLabelWellcome;
