@@ -16,17 +16,26 @@ import javax.swing.JFrame;
  *
  * @author rifar
  */
-interface Reset{
-    void resetForm();
-}
+
 public class UpdateDeleteMember extends javax.swing.JFrame implements Reset {
 
+    @Override
+    public void resetForm() {
+        ResetFormClass resetFormInstance = new ResetFormClass();
+        resetFormInstance.resetForm(searchField, fieldNama, fieldNo_hp, fieldEmail, fieldGender, fieldGymTime, fieldUniqueID, fieldAge, fieldBayaran);
+    }
+    
     /**
      * Creates new form UpdateDeleteMember
      */
     public UpdateDeleteMember() {
         initComponents();
     }
+
+    // public void resetMethod() {
+    //     ResetFormClass resetFormInstance = new ResetFormClass();
+    //     resetFormInstance.resetForm(searchField, fieldNama, fieldNo_hp, fieldEmail, fieldGender, fieldGymTime, fieldUniqueID, fieldAge, fieldBayaran);       
+    // }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,7 +45,6 @@ public class UpdateDeleteMember extends javax.swing.JFrame implements Reset {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -62,22 +70,22 @@ public class UpdateDeleteMember extends javax.swing.JFrame implements Reset {
         fieldBayaran = new javax.swing.JTextField();
         fieldGender = new javax.swing.JComboBox<>();
         fieldGymTime = new javax.swing.JComboBox<>();
-
+    
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(175, 100));
-
+    
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/close.png"))); // NOI18N
-
+    
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 118, 221));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/update & delete member.png"))); // NOI18N
         jLabel1.setText("UPDATE & DELETE MEMBER");
-
+    
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 118, 221));
         jLabel2.setText("Member ID:");
-
+    
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(0, 118, 221));
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
@@ -87,92 +95,84 @@ public class UpdateDeleteMember extends javax.swing.JFrame implements Reset {
                 btnSearchActionPerformed(evt);
             }
         });
-
+    
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 118, 221));
         jLabel3.setText("Name:");
-
+    
         fieldNama.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fieldNama.setForeground(new java.awt.Color(0, 118, 221));
-
+    
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 118, 221));
         jLabel4.setText("Mobile Number:");
-
+    
         fieldNo_hp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fieldNo_hp.setForeground(new java.awt.Color(0, 118, 221));
-
+    
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 118, 221));
         jLabel5.setText("Email:");
-
+    
         fieldEmail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fieldEmail.setForeground(new java.awt.Color(0, 118, 221));
-
+    
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 118, 221));
         jLabel6.setText("Gender:");
-
+    
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(0, 118, 221));
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/save.png"))); // NOI18N
         btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
+        btnUpdate.addActionListener(evt -> btnUpdateActionPerformed(evt));
+    
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(0, 118, 221));
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
+        btnDelete.addActionListener(evt -> btnDeleteActionPerformed(evt));
+    
         btnReset.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnReset.setForeground(new java.awt.Color(0, 118, 221));
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/reset.png"))); // NOI18N
         btnReset.setText("Reset");
-
+    
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 118, 221));
         jLabel7.setText("Gym Time:");
-
+    
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 118, 221));
         jLabel8.setText("Unique ID:");
-
+    
         fieldUniqueID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fieldUniqueID.setForeground(new java.awt.Color(0, 118, 221));
-
+    
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 118, 221));
-        jLabel9.setText("Age:");
-
+        jLabel9.setText("Birthday:");
+    
         fieldAge.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fieldAge.setForeground(new java.awt.Color(0, 118, 221));
-
+    
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 118, 221));
         jLabel10.setText("Amount to pay/month:");
-
+    
         fieldBayaran.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fieldBayaran.setForeground(new java.awt.Color(0, 118, 221));
-
+    
         fieldGender.setBackground(new java.awt.Color(204, 204, 204));
         fieldGender.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fieldGender.setForeground(new java.awt.Color(0, 118, 221));
         fieldGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose:", "Male", "Female" }));
-
+    
         fieldGymTime.setBackground(new java.awt.Color(204, 204, 204));
         fieldGymTime.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fieldGymTime.setForeground(new java.awt.Color(0, 118, 221));
         fieldGymTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Package:", "1 Month", "3 Month", "12 Month" }));
-
+    
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -216,11 +216,11 @@ public class UpdateDeleteMember extends javax.swing.JFrame implements Reset {
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
                             .addComponent(fieldUniqueID, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-                            .addComponent(jLabel9)
                             .addComponent(fieldAge)
                             .addComponent(jLabel10)
                             .addComponent(fieldBayaran)
-                            .addComponent(fieldGymTime, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(fieldGymTime, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9))
                         .addGap(46, 46, 46))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -291,18 +291,18 @@ public class UpdateDeleteMember extends javax.swing.JFrame implements Reset {
 
     Connection connect = null;
     
-    @Override
-    public void resetForm(){
-        searchField.setText("");
-        fieldNama.setText("");
-        fieldNo_hp.setText("");
-        fieldEmail.setText("");
-        fieldGender.setSelectedItem("Choose:");
-        fieldGymTime.setSelectedItem("Select Package:");
-        fieldUniqueID.setText("");
-        fieldAge.setText("");
-        fieldBayaran.setText("");
-    }
+    // @Override
+    // public void resetForm(){
+    //     searchField.setText("");
+    //     fieldNama.setText("");
+    //     fieldNo_hp.setText("");
+    //     fieldEmail.setText("");
+    //     fieldGender.setSelectedItem("Choose:");
+    //     fieldGymTime.setSelectedItem("Select Package:");
+    //     fieldUniqueID.setText("");
+    //     fieldAge.setText("");
+    //     fieldBayaran.setText("");
+    // }
     
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:

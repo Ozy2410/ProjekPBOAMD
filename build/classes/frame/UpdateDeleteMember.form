@@ -86,11 +86,11 @@
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <Component id="fieldUniqueID" alignment="0" pref="365" max="32767" attributes="0"/>
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <Component id="fieldAge" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                               <Component id="fieldBayaran" alignment="0" max="32767" attributes="0"/>
                               <Component id="fieldGymTime" max="32767" attributes="0"/>
+                              <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       </Group>
@@ -377,7 +377,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="dd" green="76" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Age:"/>
+            <Property name="text" type="java.lang.String" value="Birthday:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="fieldAge">

@@ -6,7 +6,7 @@ package frame;
 
 /**
  *
- * @author depou
+ * @author Fauzi
  */
 
 import java.sql.DriverManager;

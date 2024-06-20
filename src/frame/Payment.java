@@ -16,11 +16,6 @@ import java.sql.Statement;
  *
  * @author rifar
  */
-
-interface Reset{
-    void resetForm();
-}
-
 public class Payment extends javax.swing.JFrame implements Reset{
 
     /**

@@ -14,7 +14,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author depou
+ * @author Fauzi
  */
 
 public class LoginFrame extends javax.swing.JFrame {
@@ -169,12 +169,18 @@ public class LoginFrame extends javax.swing.JFrame {
                         }
                         Statement stm = connect.createStatement();
                         String sql = "SELECT * FROM tb_login WHERE username = '" + username + "' AND pass = '" + password + "'";
-                        String sqlAdmin = "SELECT * FROM tb_login WHERE username = 'admin' AND pass = 'admin'";
                         ResultSet r = stm.executeQuery(sql);
-                        ResultSet pawangUlar = stm.executeQuery(sqlAdmin);
-                        
+
+                        Statement stmAdmin = connect.createStatement();
+                        String sqlAdmin = "SELECT * FROM tb_login WHERE username = 'admin' AND pass = 'admin'";
+                        ResultSet pawangUlar = stmAdmin.executeQuery(sqlAdmin);
+
                         if(r.next()) {
-                            new MemberFrame().setVisible(true);
+                            if ("admin".equals(username) && "admin".equals(password)) {
+                                new AdminFrame().setVisible(true);
+                            } else {
+                                new MemberFrame().setVisible(true);
+                            }
                             dispose();
                         } else if (pawangUlar.next()){
                             new AdminFrame().setVisible(true);

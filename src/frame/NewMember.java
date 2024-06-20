@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 interface Reset{
     void resetForm();
 }
+
 public class NewMember extends javax.swing.JFrame implements Reset{
 
     /**
@@ -24,7 +25,6 @@ public class NewMember extends javax.swing.JFrame implements Reset{
     public NewMember() {
         initComponents();
         displayUniqueId();
-  
     }
 
     /**
@@ -147,7 +147,7 @@ public class NewMember extends javax.swing.JFrame implements Reset{
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 118, 221));
-        jLabel11.setText("Age:");
+        jLabel11.setText("Birthday:");
 
         age.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         age.setForeground(new java.awt.Color(0, 118, 221));
@@ -188,10 +188,10 @@ public class NewMember extends javax.swing.JFrame implements Reset{
                                     .addComponent(jLabel10)
                                     .addComponent(member_id)
                                     .addComponent(gymTime, 0, 365, Short.MAX_VALUE)
-                                    .addComponent(jLabel11)
                                     .addComponent(age)
                                     .addComponent(jLabel12)
-                                    .addComponent(bayaran))
+                                    .addComponent(bayaran)
+                                    .addComponent(jLabel11))
                                 .addGap(39, 39, 39))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnSimpanData)
