@@ -8,10 +8,16 @@ package frame;
  *
  * @author rifar
  */
+
+/**
+ * Kelas `TrainingFrame` merupakan GUI untuk menampilkan jadwal latihan dalam bentuk tabel.
+ * Tabel ini menampilkan berbagai latihan untuk setiap hari latihan yang berbeda-beda.
+ * Setiap latihan memiliki detail seperti nama latihan dan jumlah repetisi yang direkomendasikan.
+ */
 public class TrainingFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form TrainingFrame
+     * Konstruktor untuk membuat objek `TrainingFrame`, menginisialisasi komponen GUI.
      */
     public TrainingFrame() {
         initComponents();
@@ -29,7 +35,8 @@ public class TrainingFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,10 +66,14 @@ public class TrainingFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @param args the command line arguments
+     * Metode main untuk menjalankan aplikasi.
+     * Membuat objek `TrainingFrame` dan menampilkannya sebagai GUI utama.
+     *
+     * @param args Argumen baris perintah yang diteruskan ke aplikasi.
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -18,17 +18,37 @@ import java.sql.SQLException;
  * @author Fauzi
  */
 
+/**
+ * Interface Reseta berfungsi untuk mereset formulir.
+ */
 interface Reseta{
+     /**
+     * Metode untuk mereset formulir.
+     */
     void resetForm();
 }
 
+/**
+ * Kelas RegisterFrame adalah kelas JFrame yang mengimplementasikan form registrasi pengguna.
+ * Kelas ini memungkinkan pengguna untuk mengisi detail registrasi seperti username, email, dan password.
+ */
 public class RegisterFrame extends javax.swing.JFrame implements Reset{
-    private String otp;
+    private String otp; // Variabel untuk menyimpan OTP sementara
     
+    /**
+     * Setter untuk mengatur OTP.
+     *
+     * @param otp String OTP yang akan diset.
+     */
     public void setOtp(String otp){
         this.otp = otp;
     }
     
+    /**
+     * Getter untuk mendapatkan OTP.
+     *
+     * @return String OTP yang disimpan.
+     */
     public String getOtp(){
         return otp;
     }
@@ -63,15 +83,19 @@ public class RegisterFrame extends javax.swing.JFrame implements Reset{
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 118, 221));
 
+        jLabel2.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Username:");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Silahkan Isi Perintah Di Bawah");
+        jLabel1.setText("Fill in the Registration Form");
 
         jTextFieldUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,15 +103,23 @@ public class RegisterFrame extends javax.swing.JFrame implements Reset{
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Email:");
 
+        jLabel4.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Password:");
 
+        jLabel5.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Confirm Password:");
 
+        jCheckBox1.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("Show Password");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,16 +164,16 @@ public class RegisterFrame extends javax.swing.JFrame implements Reset{
                                     .addComponent(jCheckBox1))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(461, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(464, 464, 464))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(627, 627, 627)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(463, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(459, 459, 459))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +200,7 @@ public class RegisterFrame extends javax.swing.JFrame implements Reset{
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 263, Short.MAX_VALUE))
+                .addGap(0, 242, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,6 +218,10 @@ public class RegisterFrame extends javax.swing.JFrame implements Reset{
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
+    /**
+     * Metode untuk mereset isi formulir.
+     * Implementasi dari interface Reseta.
+     */
     @Override
     public void resetForm(){
         jTextFieldUsername.setText("");
@@ -201,6 +237,12 @@ public class RegisterFrame extends javax.swing.JFrame implements Reset{
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldUsernameActionPerformed
 
+    /**
+     * Metode yang dipanggil ketika pengguna mengklik tombol "Next".
+     * Metode ini melakukan validasi input pengguna dan menyimpan data registrasi ke dalam database jika valid.
+     *
+     * @param evt Objek ActionEvent dari tombol "Next".
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String email = jTextFieldEmail.getText();
@@ -247,6 +289,12 @@ public class RegisterFrame extends javax.swing.JFrame implements Reset{
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Metode yang dipanggil ketika checkbox "Tampilkan Password" diubah.
+     * Metode ini mengubah karakter echo pada field password untuk menampilkan atau menyembunyikan teks password.
+     *
+     * @param evt Objek ActionEvent dari checkbox "Tampilkan Password".
+     */
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
         if (jCheckBox1.isSelected()){
@@ -259,7 +307,9 @@ public class RegisterFrame extends javax.swing.JFrame implements Reset{
     }//GEN-LAST:event_jCheckBox1ActionPerformed
     
     /**
-     * @param args the command line arguments
+     * Metode utama untuk menjalankan aplikasi.
+     *
+     * @param args Argumen baris perintah yang diteruskan ke aplikasi.
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

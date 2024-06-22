@@ -9,11 +9,28 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JFrame;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+
 /**
- *
+ * Kelas NewMember adalah formulir untuk mendaftarkan member baru dengan mengisi informasi yang diperlukan.
+ * Kelas ini mengimplementasikan antarmuka Reset untuk mereset form.
+ * Ini juga mencakup pembuatan ID unik, penulisan dan pembacaan ID terakhir dari file, dan validasi data sebelum disimpan ke database.
+ * 
  * @author rifar
  */
 interface Reset{
+    /**
+     * Metode untuk mereset nilai-nilai dalam form.
+     */
     void resetForm();
 }
 
@@ -22,9 +39,33 @@ public class NewMember extends javax.swing.JFrame implements Reset{
     /**
      * Creates new form NewMember
      */
+    
+    private Connection connect = null; // Koneksi ke database
+    private static int unique_id; // ID unik untuk setiap member baru
+    
+    // Path untuk menyimpan file ID unik
+    Path currentRelativePath = Paths.get("");
+    String s = currentRelativePath.toAbsolutePath().toString();
+    private final String ID_FILE_PATH = s + "\\src\\frame\\unik_id.txt";
+    
+    /**
+     * Konstruktor untuk membuat objek NewMember baru.
+     * Menginisialisasi komponen GUI dan menampilkan ID unik terakhir yang digunakan.
+     */
     public NewMember() {
         initComponents();
+        unique_id = readLastUsedID();
         displayUniqueId();
+    }
+    
+    /**
+     * Konstruktor alternatif untuk membuat objek NewMember baru dengan parameter khusus.
+     * @param unique_id ID unik yang diteruskan
+     * @param ID_FILE_PATH Path file yang menyimpan ID unik
+     */
+    public NewMember(int unique_id, String ID_FILE_PATH){
+        unique_id = this.unique_id;
+        ID_FILE_PATH = this.ID_FILE_PATH;
     }
 
     /**
@@ -53,12 +94,13 @@ public class NewMember extends javax.swing.JFrame implements Reset{
         member_id = new javax.swing.JTextField();
         gymTime = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        age = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         bayaran = new javax.swing.JTextField();
+        jDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(175, 100));
+        setResizable(false);
 
         jPanel1.setForeground(new java.awt.Color(0, 118, 221));
 
@@ -144,18 +186,21 @@ public class NewMember extends javax.swing.JFrame implements Reset{
         gymTime.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         gymTime.setForeground(new java.awt.Color(0, 118, 221));
         gymTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Package:", "1 Month", "3 Month", "12 Month" }));
+        gymTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gymTimeActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 118, 221));
-        jLabel11.setText("Birthday:");
-
-        age.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        age.setForeground(new java.awt.Color(0, 118, 221));
+        jLabel11.setText("Birth Date:");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 118, 221));
         jLabel12.setText("Amount to pay/month");
 
+        bayaran.setEditable(false);
         bayaran.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bayaran.setForeground(new java.awt.Color(0, 118, 221));
 
@@ -188,10 +233,10 @@ public class NewMember extends javax.swing.JFrame implements Reset{
                                     .addComponent(jLabel10)
                                     .addComponent(member_id)
                                     .addComponent(gymTime, 0, 365, Short.MAX_VALUE)
-                                    .addComponent(age)
                                     .addComponent(jLabel12)
                                     .addComponent(bayaran)
-                                    .addComponent(jLabel11))
+                                    .addComponent(jLabel11)
+                                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(39, 39, 39))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnSimpanData)
@@ -228,9 +273,9 @@ public class NewMember extends javax.swing.JFrame implements Reset{
                     .addComponent(jLabel7)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -258,44 +303,98 @@ public class NewMember extends javax.swing.JFrame implements Reset{
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private Connection connect = null;
-    private static int unique_id = 1000;
-    
+  
+    /**
+     * Metode untuk menghasilkan ID unik berdasarkan nilai unique_id.
+     * Jika unique_id sudah melebihi 9999, akan dilemparkan RuntimeException.
+     * @return String representasi ID unik dengan format 4 digit angka
+     */
     private synchronized String uniqueIdGen(){
         if (unique_id > 9999) {
             throw new RuntimeException("ID Sudah melebihi kapasitas");
         }
-        return String.format("%04d", unique_id++);   
+        return String.format("%04d", unique_id);
     }
     
-    private void displayUniqueId() {
-        try {
-            String uniqueID = uniqueIdGen();
-            member_id.setText(uniqueID);
-        } catch (RuntimeException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    /**
+     * Metode untuk membaca ID terakhir yang digunakan dari file.
+     * Jika file tidak ditemukan, akan menampilkan pesan kesalahan dan mengembalikan nilai default 1001.
+     * @return ID terakhir yang dibaca dari file atau 1001 jika gagal membaca
+     */
+    private int readLastUsedID(){
+        File file = new File(ID_FILE_PATH);
+        if (!file.exists()) {
+            JOptionPane.showMessageDialog(this, "File Tidak Ada: " + ID_FILE_PATH, "Error", JOptionPane.ERROR_MESSAGE);
+            return 1001;
+        }
+        
+        try(BufferedReader reader = new BufferedReader(new FileReader(ID_FILE_PATH))){
+            String lastID = reader.readLine();
+            return lastID != null ? Integer.parseInt(lastID) : 1001;
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "File Tidak Ditemukan " + ID_FILE_PATH, "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return 1001;
+        } catch (IOException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error reading ID from file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return 1001;
+        }
+        
+    }
+    
+    /**
+     * Metode untuk menulis ID terakhir yang digunakan ke file.
+     * @param id ID terakhir yang akan ditulis ke file
+     */
+    private void writeLastUsedID(int id){
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(ID_FILE_PATH))){
+            writer.write(Integer.toString(id));
+        }catch(IOException e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error writing ID to file", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-      @Override
-        public void resetForm(){
+    
+    /**
+     * Metode untuk menampilkan ID unik saat ini pada komponen member_id.
+     */
+    private void displayUniqueId() {
+        member_id.setText(uniqueIdGen());
+    }    
+    
+    /**
+     * Metode untuk mereset form dengan menghapus semua input yang dimasukkan oleh pengguna.
+     */
+    @Override
+    public void resetForm(){
         fieldName.setText("");
         fieldNo_hp.setText("");
         fieldEmail.setText("");
         fieldGender.setSelectedItem("Choose:");
         gymTime.setSelectedItem("Select Package:");
-        age.setText("");
         bayaran.setText("");
-    }
+        displayUniqueId();
+        jDate.getDateFormatString();
+    }        
+    
+    // Metode-metode lainnya yang digunakan untuk meng-handle event dan validasi data
     
     private void fieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldNameActionPerformed
 
+    /**
+     * Metode yang dipanggil ketika tombol Simpan Data ditekan.
+     * Memvalidasi input dan menyimpan data member baru ke database.
+     * Menampilkan pesan kesalahan jika input tidak valid.
+     * @param evt ActionEvent yang dipicu oleh tombol Simpan Data
+     */
     private void btnSimpanDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanDataActionPerformed
         // TODO add your handling code here:
-        displayUniqueId();
+        String Tgl_lahir;
         
         String name = fieldName.getText();
         String noHP = fieldNo_hp.getText();
@@ -303,7 +402,6 @@ public class NewMember extends javax.swing.JFrame implements Reset{
         String gender = fieldGender.getSelectedItem().toString();
         String timeGym = gymTime.getSelectedItem().toString();
         String member_no = member_id.getText();
-        String umur = age.getText();
         String bayar = bayaran.getText();
         
         if(!name.isEmpty()){
@@ -312,13 +410,16 @@ public class NewMember extends javax.swing.JFrame implements Reset{
                     if(!"Choose:".equalsIgnoreCase(gender)){
                         if(!"Select Package:".equalsIgnoreCase(timeGym)){
                             if(!member_no.isEmpty()){
-                                if(!umur.isEmpty() && umur.matches("\\d+")) {
+                                if(jDate.getDate() != null) {
                                     if(!bayar.isEmpty()) {
                                         try{
                                             if (connect == null || connect.isClosed()) {
                                                 connect = Koneksi.getConnection();
                                             }
-                                            String sql = "INSERT INTO tb_member (nama, no_hp, email, gender, gym_time, id_member, age, bayaran) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                                            String pattern = "dd-MMMM-yyyy";
+                                            SimpleDateFormat format = new SimpleDateFormat(pattern);
+                                            Tgl_lahir = String.valueOf(format.format(jDate.getDate()));
+                                            String sql = "INSERT INTO tb_member (nama, no_hp, email, gender, gym_time, id_member, tgl_lahir, bayaran) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                                             try(PreparedStatement p = connect.prepareStatement(sql)){
                                                 p.setString(1, name);
                                                 p.setString(2, noHP);
@@ -326,11 +427,13 @@ public class NewMember extends javax.swing.JFrame implements Reset{
                                                 p.setString(4, gender);
                                                 p.setString(5, timeGym);
                                                 p.setString(6, member_no);
-                                                p.setString(7, umur);
+                                                p.setString(7, Tgl_lahir);
                                                 p.setString(8, bayar);
                                                 int telahTerisi = p.executeUpdate();
                                                 if(telahTerisi > 0){
-                                                    JOptionPane.showMessageDialog(this, "Member Baru Sukses Ditambahkan!");
+                                                    JOptionPane.showMessageDialog(this, "Member Baru Sukses Ditambahkan!");     
+                                                    unique_id++;
+                                                    writeLastUsedID(unique_id);
                                                 }
                                             }
                                             resetForm();
@@ -341,7 +444,7 @@ public class NewMember extends javax.swing.JFrame implements Reset{
                                         JOptionPane.showMessageDialog(new JFrame(), "Tolong Masukan Jumlah Pembayaran", null, JOptionPane.ERROR_MESSAGE);
                                     }
                                 } else {
-                                    JOptionPane.showMessageDialog(new JFrame(), "Tolong Masukan Umur Member", null, JOptionPane.ERROR_MESSAGE);
+                                    JOptionPane.showMessageDialog(new JFrame(), "Tolong Masukan Tanggal Lahir Member", null, JOptionPane.ERROR_MESSAGE);
                                 }
                             } else {
                                 JOptionPane.showMessageDialog(new JFrame(), "Ada Error Pada ID Member", null, JOptionPane.ERROR_MESSAGE);
@@ -365,16 +468,48 @@ public class NewMember extends javax.swing.JFrame implements Reset{
 
     private void member_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_member_idActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_member_idActionPerformed
 
+    /**
+     * Metode yang dipanggil ketika tombol Reset Data ditekan.
+     * Memanggil metode resetForm() untuk mengosongkan form.
+     * @param evt ActionEvent yang dipicu oleh tombol Reset Data
+     */
     private void btnResetDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetDataActionPerformed
         // TODO add your handling code here:
         resetForm();
     }//GEN-LAST:event_btnResetDataActionPerformed
 
     /**
-     * @param args the command line arguments
+     * Metode yang dipanggil ketika pilihan waktu gym diubah.
+     * Mengatur jumlah bayaran berdasarkan paket yang dipilih.
+     * @param evt ActionEvent yang dipicu oleh perubahan pilihan di JComboBox gymTime
+     */
+    private void gymTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gymTimeActionPerformed
+        // TODO add your handling code here:
+        String selectedPack = (String) gymTime.getSelectedItem();
+        
+        if(selectedPack != null){
+            switch(selectedPack){
+                case "1 Month":
+                    bayaran.setText("Rp. 100.000");
+                    break;
+                case "3 Month":
+                    bayaran.setText("Rp. 250.000");
+                    break;
+                case "12 Month":
+                    bayaran.setText("Rp. 750.000");
+                    break;
+                default:
+                    bayaran.setText("");
+                    break;
+            }
+        }
+    }//GEN-LAST:event_gymTimeActionPerformed
+
+     /**
+     * Metode utama yang digunakan untuk menjalankan aplikasi ini.
+     * @param args argumen baris perintah yang diberikan saat menjalankan program
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -409,7 +544,6 @@ public class NewMember extends javax.swing.JFrame implements Reset{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField age;
     private javax.swing.JTextField bayaran;
     private javax.swing.JButton btnResetData;
     private javax.swing.JButton btnSimpanData;
@@ -418,6 +552,7 @@ public class NewMember extends javax.swing.JFrame implements Reset{
     private javax.swing.JTextField fieldName;
     private javax.swing.JTextField fieldNo_hp;
     private javax.swing.JComboBox<String> gymTime;
+    private com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

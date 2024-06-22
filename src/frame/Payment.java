@@ -13,13 +13,28 @@ import java.sql.Statement;
 
 
 /**
- *
+ * Kelas Payment adalah GUI untuk melakukan pembayaran kepada anggota berdasarkan ID anggota.
+ * Form ini memungkinkan pencarian anggota, menampilkan informasi, serta melakukan penyimpanan data pembayaran.
+ * Implementasi interface Reset untuk mereset form saat diperlukan.
+ * 
+ * 
+ * Setiap bagian dari form diinisialisasi dalam konstruktor, termasuk aksi dari tombol-tombol yang ada.
+ * Terdapat fungsi untuk menyimpan pembayaran ke database, mencari anggota berdasarkan ID, serta mereset form.
+ * 
+ * 
+ * GUI ini menggunakan komponen-komponen seperti JTextField, JButton, JLabel, dan JPanel dari Swing.
+ * Komponen-komponen tersebut diatur ulang menggunakan GroupLayout untuk tampilan yang lebih rapi.
+ * 
+ * 
+ * Koneksi database diatur melalui fungsi setCon dan getCon yang memanfaatkan objek Connection.
+ * 
  * @author rifar
  */
 public class Payment extends javax.swing.JFrame implements Reset{
 
     /**
      * Creates new form Payment
+     * Menginisialisasi komponen GUI seperti label, input field, dan tombol.
      */
     public Payment() {
         initComponents();
@@ -53,6 +68,7 @@ public class Payment extends javax.swing.JFrame implements Reset{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(175, 100));
+        setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/close.png"))); // NOI18N
 
@@ -183,18 +199,31 @@ public class Payment extends javax.swing.JFrame implements Reset{
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     Connection connect = null;
     
+    /**
+     * Fungsi untuk mengatur koneksi ke database.
+     * @param connect objek Connection yang digunakan untuk mengakses database.
+     */
     public void setCon(Connection connect){
         this.connect = connect;
     }
     
+    /**
+     * Fungsi untuk mendapatkan koneksi database yang sedang digunakan.
+     * @return objek Connection saat ini yang terhubung ke database.
+     */
     public Connection getCon(){
         return connect;
     }
     
+    /**
+     * Implementasi dari interface Reset.
+     * Mengatur ulang semua input field pada form menjadi kosong.
+     */
     @Override
     public void resetForm(){
         searchField.setText("");
@@ -204,6 +233,11 @@ public class Payment extends javax.swing.JFrame implements Reset{
         fieldBayaran.setText("");
     }
     
+    /**
+     * Aksi yang dilakukan saat tombol Simpan dibuat pada form.
+     * Mencoba menyimpan data pembayaran ke database setelah melakukan validasi koneksi.
+     * @param evt objek ActionEvent yang menandai aksi pengguna terhadap tombol.
+     */
     private void btnSimpanBayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanBayaranActionPerformed
         // TODO add your handling code here:
         try{
@@ -227,6 +261,11 @@ public class Payment extends javax.swing.JFrame implements Reset{
         }
     }//GEN-LAST:event_btnSimpanBayaranActionPerformed
 
+    /**
+     * Aksi yang dilakukan saat tombol Cari dibuat pada form.
+     * Mencari anggota berdasarkan ID anggota yang dimasukkan pengguna.
+     * @param evt objek ActionEvent yang menandai aksi pengguna terhadap tombol.
+     */
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         String memberID = searchField.getText().trim();
@@ -262,13 +301,20 @@ public class Payment extends javax.swing.JFrame implements Reset{
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    /**
+     * Aksi yang dilakukan saat tombol Reset dibuat pada form.
+     * Mengatur ulang form dengan memanggil fungsi resetForm().
+     * @param evt objek ActionEvent yang menandai aksi pengguna terhadap tombol.
+     */
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
         resetForm();
     }//GEN-LAST:event_btnResetActionPerformed
 
     /**
-     * @param args the command line arguments
+     * Metode utama yang dimulai saat menjalankan aplikasi.
+     * Membuat objek Payment dan menampilkannya secara visual.
+     * @param args argumen baris perintah yang bisa diterima saat menjalankan aplikasi.
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

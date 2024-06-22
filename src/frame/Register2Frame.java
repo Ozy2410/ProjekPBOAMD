@@ -13,10 +13,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Kelas Register2Frame merupakan kelas untuk mengatur tampilan registrasi lanjutan pada aplikasi.
+ * Kelas ini memungkinkan pengguna untuk memasukkan informasi pribadi seperti nama lengkap, jenis kelamin,
+ * tanggal lahir, dan jenis langganan.
+ * Implements Reseta untuk mereset form setelah proses registrasi selesai.
+ * Menggunakan koneksi database untuk menyimpan data registrasi ke dalam tabel tb_login.
+ * 
  * @author rifar
  */
-
 public class Register2Frame extends javax.swing.JFrame implements Reseta{
 
     /**
@@ -50,24 +54,29 @@ public class Register2Frame extends javax.swing.JFrame implements Reseta{
         jDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 118, 211));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 400));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Haii, kenalan dulu yukk");
+        jLabel1.setText("Hello, introduce yourself");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Gender:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Full Name:");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         buttonGroup1.add(jButtonFemale);
-        jButtonFemale.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonFemale.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jButtonFemale.setForeground(new java.awt.Color(255, 255, 255));
         jButtonFemale.setText("Female");
         jButtonFemale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +85,8 @@ public class Register2Frame extends javax.swing.JFrame implements Reseta{
         });
 
         buttonGroup1.add(jButtonMale);
-        jButtonMale.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonMale.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jButtonMale.setForeground(new java.awt.Color(255, 255, 255));
         jButtonMale.setText("Male");
         jButtonMale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,9 +94,10 @@ public class Register2Frame extends javax.swing.JFrame implements Reseta{
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Tanggal Lahir");
+        jLabel4.setText("Birth Date");
 
         jTextFieldFullName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,16 +105,17 @@ public class Register2Frame extends javax.swing.JFrame implements Reseta{
             }
         });
 
-        jComboBoxBundling.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jenis-Jenis Paket:", "Monthly", "Quarterly", "Yearly" }));
+        jComboBoxBundling.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bundle Types :", "Monthly", "Quarterly", "Yearly" }));
         jComboBoxBundling.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxBundlingActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Pilih Bundling Membership ");
+        jLabel5.setText("Choose Membership Bundle");
 
         jButtonFinish.setText("Finish");
         jButtonFinish.addActionListener(new java.awt.event.ActionListener() {
@@ -136,17 +148,20 @@ public class Register2Frame extends javax.swing.JFrame implements Reseta{
                                 .addComponent(jButtonMale)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonFemale)))
-                        .addGap(0, 565, Short.MAX_VALUE)))
+                        .addGap(0, 559, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(626, Short.MAX_VALUE)
                 .addComponent(jButtonFinish, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(624, 624, 624))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(596, 596, 596)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(596, 596, 596)
+                        .addComponent(jTextFieldFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(597, 597, 597)
+                        .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -160,7 +175,7 @@ public class Register2Frame extends javax.swing.JFrame implements Reseta{
                 .addComponent(jTextFieldFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
@@ -173,7 +188,7 @@ public class Register2Frame extends javax.swing.JFrame implements Reseta{
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonFinish)
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addContainerGap(298, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,32 +203,58 @@ public class Register2Frame extends javax.swing.JFrame implements Reseta{
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    
     private Connection connect = null;
     private ButtonGroup genderGroup = new ButtonGroup();
     
+    /**
+     * Method untuk mengatur koneksi ke database.
+     * @param con Objek Connection yang akan diatur.
+     */
     public void setCon(Connection con){
         connect = con;
     }
     
+    /**
+     * Method untuk mengatur grup tombol jenis kelamin.
+     * @param genderGroup Objek ButtonGroup yang akan diatur.
+     */
     public void setGender(ButtonGroup genderGroup){
         this.genderGroup = genderGroup;
     }
     
+    /**
+     * Method untuk mendapatkan objek koneksi ke database.
+     * @return Objek Connection yang digunakan.
+     */
     public Connection getCon(){
         return connect;
     }
     
+    /**
+     * Method untuk mendapatkan grup tombol jenis kelamin.
+     * @return Objek ButtonGroup dari jenis kelamin.
+     */
     public ButtonGroup getGender(){
         return genderGroup;
     }
     
+    /**
+     * Method untuk mengelompokkan tombol jenis kelamin menjadi satu grup.
+     */
     public void groupButton() {
         genderGroup.add(jButtonMale);
         genderGroup.add(jButtonFemale);
     }
-        @Override
-        public void resetForm(){
+    
+    /**
+     * Implementasi dari method resetForm pada interface Reseta.
+     * Digunakan untuk mereset nilai-nilai pada form setelah proses registrasi selesai.
+     */
+    @Override
+    public void resetForm(){
         jTextFieldFullName.setText("");
         jDate.getDateFormatString();
         genderGroup.clearSelection();
@@ -232,6 +273,11 @@ public class Register2Frame extends javax.swing.JFrame implements Reseta{
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonFemaleActionPerformed
 
+     /**
+     * Method yang dijalankan saat tombol Finish ditekan.
+     * Digunakan untuk menyimpan data registrasi ke database setelah validasi.
+     * @param evt Objek ActionEvent dari tombol Finish.
+     */
     private void jButtonFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinishActionPerformed
         // TODO add your handling code here:
         String bundle = jComboBoxBundling.getSelectedItem().toString();
@@ -286,7 +332,8 @@ public class Register2Frame extends javax.swing.JFrame implements Reseta{
     }//GEN-LAST:event_jComboBoxBundlingActionPerformed
 
     /**
-     * @param args the command line arguments
+     * Method utama untuk menjalankan aplikasi.
+     * @param args Argumen baris perintah yang diberikan saat menjalankan aplikasi.
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

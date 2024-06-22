@@ -18,7 +18,11 @@ import javax.swing.table.DefaultTableModel;
  */
 
 /**
- *
+ * Kelas ini adalah representasi dari frame utama untuk admin.
+ * Kelas ini mengatur tata letak dan fungsi dari menu utama admin aplikasi.
+ * Menu yang tersedia termasuk manajemen member, pembayaran, logout, dan keluar.
+ * Frame ini juga mengelola koneksi database untuk interaksi dengan data.
+ * 
  * @author Fauzi
  */
 public class AdminFrame extends javax.swing.JFrame {
@@ -48,7 +52,7 @@ public class AdminFrame extends javax.swing.JFrame {
         Exit = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 118, 221));
@@ -73,6 +77,7 @@ public class AdminFrame extends javax.swing.JFrame {
         });
 
         jLabelWellcome.setFont(new java.awt.Font("Bahnschrift", 1, 90)); // NOI18N
+        jLabelWellcome.setForeground(new java.awt.Color(255, 255, 255));
         jLabelWellcome.setText("WELCOME");
 
         ListOfMember.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -169,81 +174,104 @@ public class AdminFrame extends javax.swing.JFrame {
     private Connection connect = null;
     private JDialog jDialog = new JDialog();
     
+    /**
+     * Mengatur koneksi database untuk digunakan dalam kelas ini.
+     * 
+     * @param connect Objek Connection yang digunakan untuk koneksi database.
+     */
     public void setCon(Connection connect){
         this.connect = connect;
     }
     
+    /**
+     * Mengatur dialog yang digunakan dalam kelas ini.
+     * 
+     * @param jDialog Objek JDialog yang digunakan untuk dialog.
+     */
     public void setDialog(JDialog jDialog){
         this.jDialog = jDialog;
     }
     
+    /**
+     * Mengembalikan objek Connection yang digunakan dalam kelas ini.
+     * 
+     * @return Objek Connection yang digunakan untuk koneksi database.
+     */
     public Connection getCon(){
         return connect;
     }
     
+    /**
+     * Mengembalikan objek JDialog yang digunakan dalam kelas ini.
+     * 
+     * @return Objek JDialog yang digunakan untuk dialog.
+     */
     public JDialog getjDialog(){
         return jDialog;
     }
     
+    /**
+     * Menangani aksi ketika tombol "Update&Delete Member" ditekan.
+     * Membuka frame baru untuk mengupdate atau menghapus member.
+     * 
+     * @param evt Event aksi yang terjadi.
+     */
     private void Update_Delete_MemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update_Delete_MemberActionPerformed
         // TODO add your handling code here:
         new UpdateDeleteMember().setVisible(true);
     }//GEN-LAST:event_Update_Delete_MemberActionPerformed
 
+    /**
+     * Menangani aksi ketika label "List Of Member" ditekan.
+     * Membuka frame baru untuk menampilkan daftar member.
+     * 
+     * @param evt Event mouse yang terjadi.
+     */
     private void ListOfMemberMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListOfMemberMousePressed
         // TODO add your handling code here:
-        DefaultTableModel model = new DefaultTableModel(new String[]{"No", "Nama", "Nomor Handphone", "Email", "Gender", "GYM Time", "ID Member", "Umur", "Bayaran"}, 0);
-        JTable table = new JTable(model);
-        
-        JPanel panel = new JPanel();
-        JScrollPane sp = new JScrollPane(table);
-        
-        panel.add(sp);
-        jDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        jDialog.setContentPane(panel);
-        jDialog.pack();
-        jDialog.setVisible(true);
-        
-        try{
-            if(connect == null || connect.isClosed()) {
-                connect = Koneksi.getConnection();
-            }
-            Statement stm = connect.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM tb_member");
-            
-            while (rs.next()) {
-                int no = rs.getInt("id");
-                String nama = rs.getString("nama");
-                String noHP = rs.getString("no_hp");
-                String email = rs.getString("email");
-                String gender = rs.getString("gender");
-                String gymTime = rs.getString("gym_time");
-                String member_id = rs.getString("id_member");
-                String age = rs.getString("age");
-                String bayar = rs.getString("bayaran");
-                model.addRow(new Object[]{no, nama, noHP, email, gender, gymTime, member_id, age, bayar});
-            }
-        } catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+        new FrameListMember().setVisible(true);
     }//GEN-LAST:event_ListOfMemberMousePressed
 
+    /**
+     * Menangani aksi ketika label "Payment" ditekan.
+     * Membuka frame baru untuk melakukan pembayaran.
+     * 
+     * @param evt Event mouse yang terjadi.
+     */
     private void PaymentMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PaymentMousePressed
         // TODO add your handling code here:
         new Payment().setVisible(true);
     }//GEN-LAST:event_PaymentMousePressed
 
+    /**
+     * Menangani aksi ketika label "Logout" ditekan.
+     * Menutup frame ini dan membuka frame login.
+     * 
+     * @param evt Event mouse yang terjadi.
+     */
     private void LogoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMousePressed
         // TODO add your handling code here:
         new LoginFrame().setVisible(true);
         dispose();
     }//GEN-LAST:event_LogoutMousePressed
 
+    /**
+     * Menangani aksi ketika label "Exit" ditekan.
+     * Menutup aplikasi.
+     * 
+     * @param evt Event mouse yang terjadi.
+     */
     private void ExitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMousePressed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_ExitMousePressed
 
+    /**
+     * Menangani aksi ketika label "New Member" ditekan.
+     * Membuka frame baru untuk menambahkan member baru.
+     * 
+     * @param evt Event mouse yang terjadi.
+     */
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
         // TODO add your handling code here:
         new NewMember().setVisible(true);

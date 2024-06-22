@@ -8,6 +8,13 @@ package frame;
  *
  * @author rifar
  */
+
+/**
+ * Kelas TampilanAwal adalah kelas utama untuk tampilan awal aplikasi.
+ * Ini merupakan form utama yang menampilkan logo dan tombol untuk login dan registrasi.
+ * Ketika tombol login atau registrasi ditekan, form ini akan ditutup dan form 
+ * yang sesuai (LoginFrame atau RegisterFrame) akan ditampilkan.
+ */
 public class TampilanAwal extends javax.swing.JFrame {
 
     /**
@@ -33,6 +40,7 @@ public class TampilanAwal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("dasdas");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 118, 221));
@@ -50,7 +58,7 @@ public class TampilanAwal extends javax.swing.JFrame {
                 jButtonRegisterAwalActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonRegisterAwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 460, 190, -1));
+        jPanel2.add(jButtonRegisterAwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 460, 190, 30));
 
         jButtonLoginAwal.setBackground(new java.awt.Color(242, 242, 242));
         jButtonLoginAwal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -60,27 +68,43 @@ public class TampilanAwal extends javax.swing.JFrame {
                 jButtonLoginAwalActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonLoginAwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, 190, 20));
+        jPanel2.add(jButtonLoginAwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, 190, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metode yang dipanggil ketika tombol "Register" ditekan.
+     * Menghapus frame ini dan menampilkan RegisterFrame baru.
+     *
+     * @param evt Event aksi yang terjadi (dalam hal ini, tombol ditekan).
+     */
     private void jButtonRegisterAwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterAwalActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        new RegisterFrame().setVisible(true);
+        this.dispose();// Menutup frame saat ini
+        new RegisterFrame().setVisible(true);// Menampilkan RegisterFrame
     }//GEN-LAST:event_jButtonRegisterAwalActionPerformed
 
+    /**
+     * Metode yang dipanggil ketika tombol "Login" ditekan.
+     * Menghapus frame ini dan menampilkan LoginFrame baru.
+     *
+     * @param evt Event aksi yang terjadi (dalam hal ini, tombol ditekan).
+     */
     private void jButtonLoginAwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginAwalActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        new LoginFrame().setVisible(true);
+        this.dispose();// Menutup frame saat ini
+        new LoginFrame().setVisible(true);// Menampilkan LoginFrame
     }//GEN-LAST:event_jButtonLoginAwalActionPerformed
 
     /**
-     * @param args the command line arguments
+     * Metode main untuk menjalankan aplikasi. Membuat objek TampilanAwal dan
+     * menampilkannya sebagai form utama.
+     *
+     * @param args Argumen baris perintah yang diteruskan ke aplikasi.
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

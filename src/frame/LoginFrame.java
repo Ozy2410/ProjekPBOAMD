@@ -13,23 +13,37 @@ import java.sql.Statement;
  */
 
 /**
- *
+ * Frame untuk halaman login aplikasi. Memungkinkan pengguna untuk
+ * melakukan autentikasi dengan username dan password. Jika autentikasi
+ * berhasil, pengguna akan diarahkan ke frame yang sesuai (AdminFrame
+ * atau MemberFrame).
+ * 
  * @author Fauzi
  */
-
 public class LoginFrame extends javax.swing.JFrame {
     private boolean valid = true;
    
+    /**
+     * Setter untuk menetapkan nilai validasi login.
+     * 
+     * @param valid Nilai boolean yang menentukan apakah login valid atau tidak.
+     */
     public void setValid(boolean valid){
         this.valid = valid;
     }
     
+    /**
+     * Getter untuk mendapatkan status validasi login.
+     * 
+     * @return Status validasi login (true jika valid, false jika tidak).
+     */
     public boolean getValid(){
         return valid;
     }
 
     /**
-     * Creates new form LoginFrame
+     * Konstruktor untuk membuat instance dari LoginFrame.
+     * Memanggil initComponents() untuk menginisialisasi komponen GUI.
      */
     public LoginFrame() {
         initComponents();
@@ -75,7 +89,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 118, 221));
         jLabel2.setText("LOGIN");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(790, 220, 145, 59);
+        jLabel2.setBounds(790, 220, 144, 59);
 
         jTextUsername.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextUsername.setForeground(new java.awt.Color(0, 118, 221));
@@ -155,6 +169,16 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
+    /**
+     * Metode yang dipanggil ketika tombol Login ditekan.
+     * Memeriksa kecocokan username dan password yang dimasukkan
+     * dengan data yang ada di database. Jika login berhasil,
+     * pengguna akan dialihkan ke frame yang sesuai (AdminFrame
+     * atau MemberFrame). Jika tidak cocok, pesan kesalahan akan
+     * ditampilkan.
+     * 
+     * @param evt Event dari tombol Login
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String username = jTextUsername.getText();
@@ -203,7 +227,9 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
     
     /**
-     * @param args the command line arguments
+     * Main method untuk menjalankan aplikasi login.
+     * 
+     * @param args Argumen dari baris perintah
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
